@@ -103,7 +103,7 @@ const checkAnswer = (currentLevel) => {
     setTimeout(() => {
       $("body").removeClass("game-over");
     }, 200);
-    $("h1").text("Game Over, Press 'A' Key to Restart!");
+    $("h1").text("BLOKK GOBLOOOK!, RESTART SINI!");
     startOver();
   }
 };
