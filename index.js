@@ -93,9 +93,7 @@ const checkAnswer = (currentLevel) => {
     // console.log(userClickedPattern.length);
     // console.log(gamePattern.length);
     if (userClickedPattern.length === gamePattern.length) {
-      setTimeout(() => {
-        nextSequence();
-      }, 1000);
+      setTimeout(() => nextSequence(), 1000);
     }
   } else {
     console.log("wrong");
@@ -103,7 +101,7 @@ const checkAnswer = (currentLevel) => {
     setTimeout(() => {
       $("body").removeClass("game-over");
     }, 200);
-    $("h1").text("BLOKK GOBLOOOK!, RESTART SINI!");
+    $("h1").text("Game Over!, Press 'A' to Restart!");
     startOver();
   }
 };
@@ -133,11 +131,21 @@ function nextSequence() {
   console.log(gamePattern);
 
   // Show the sequence to the user with animations and sound
-  $("#" + randomChosenColor)
-    .fadeIn(100)
-    .fadeOut(100)
-    .fadeIn(100);
-  playSound(randomChosenColor);
+
+  // Option 1: Showing all gamePattern index
+  for (let i = 0; i < gamePattern.length; i++) {
+		function timer() {
+			setTimeout(() => {
+				$(`#${gamePattern[i]}`).fadeIn(100).fadeOut(100).fadeIn(100);
+				playSound(gamePattern[i]);
+			}, i * 800);
+		}
+		timer();
+	}
+
+  // Option 2: Showing newest randomChosenColor only
+  // $(`#${randomChosenColor}`).fadeIn(100).fadeOut(100).fadeIn(100);
+  // playSound(randomChosenColor);
 }
 //   nextSequence();
 
