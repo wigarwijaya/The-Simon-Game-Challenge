@@ -35,10 +35,26 @@ function animatePress(currentColor) {
 // -------------------------------------------------------------
 // Start The Game
 
+$(document).on("click", function (e) {
+  // console.log(e.target.id);
+  // console.log($("h1").attr("id"))
+  if (e.target.id === $("h1").attr("id")){
+    if (!started) {
+      // The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 1".
+      $("#level-title").text("level " + level);
+      nextSequence();
+      started = true;
+    }
+  } else {
+    !started;
+  }
+});
+
+
 // Use jQuery to detect when a keyboard key has been pressed, when that happens for the first time, call nextSequence()
 $(document).on("keypress", function (e) {
   // console.log(e.key);
-  if (e.key === "a") {
+  if (e.key === "a"){
     if (!started) {
       // console.log(started);
 
@@ -85,7 +101,7 @@ const checkAnswer = (currentLevel) => {
     console.log("wrong");
     $("body").addClass("game-over");
     setTimeout(() => {
-    $("body").removeClass("game-over");
+      $("body").removeClass("game-over");
     }, 200);
     $("h1").text("Game Over, Press 'A' Key to Restart!");
     startOver();
@@ -132,7 +148,7 @@ const startOver = () => {
   level = 0;
   gamePattern = [];
   started = false;
-}
+};
 
 // -------------------------------------------------------------
 // BACA TENTANG DATA STRUCTURE & ALGORITHM
